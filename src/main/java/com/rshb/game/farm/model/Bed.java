@@ -1,23 +1,29 @@
 package com.rshb.game.farm.model;
 
 import com.rshb.game.farm.model.plant.Plant;
+import com.rshb.game.farm.model.seed.Seed;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.UUID;
 
-@Data
 @Entity
 @Table(name = "beds")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Bed {
     @Id
     @GeneratedValue
     private UUID id;
 
     @ManyToOne
-    private User userId;
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Plant plant;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "seed_id")
+    private Seed seed;
 }

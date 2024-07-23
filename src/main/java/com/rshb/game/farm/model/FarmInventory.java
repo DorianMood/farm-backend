@@ -1,14 +1,18 @@
 package com.rshb.game.farm.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class FarmInventory {
 
     @Id
@@ -16,10 +20,11 @@ public class FarmInventory {
     private UUID id;
 
     @OneToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
     @Column
-    private Integer balance;
+    @Builder.Default
+    private Integer balance = 100;
 
 }

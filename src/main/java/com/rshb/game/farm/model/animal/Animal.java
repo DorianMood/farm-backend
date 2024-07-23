@@ -2,21 +2,20 @@ package com.rshb.game.farm.model.animal;
 
 import com.rshb.game.farm.model.Corral;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Table(name = "animals")
 public class Animal {
     @Id
@@ -26,12 +25,23 @@ public class Animal {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "animal_id",cascade = CascadeType.ALL)
-    private Corral corralId;
+    @OneToOne
+    @JoinColumn(name = "corral_id")
+    private Corral corral;
 
     @Column
     private String description;
 
+    @Column
+    private LocalDateTime landingTime;
+
     @Enumerated(EnumType.STRING)
     private AnimalKind animalKind;
+
+    @Column
+    @Builder.Default
+    private Integer growthTime = 10;
+
+    @Column
+    private Integer fixedProfit;
 }

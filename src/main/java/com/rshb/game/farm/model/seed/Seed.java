@@ -3,18 +3,17 @@ package com.rshb.game.farm.model.seed;
 import com.rshb.game.farm.model.Bed;
 import com.rshb.game.farm.model.plant.PlantKind;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Table(name = "seeds")
 public class Seed {
     @Id
@@ -24,7 +23,8 @@ public class Seed {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "plant",cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "bed_id")
     private Bed bed;
 
     @Column
@@ -32,4 +32,14 @@ public class Seed {
 
     @Enumerated(EnumType.STRING)
     private SeedKind seedKind;
+
+    @Column
+    private LocalDateTime landingTime;
+
+    @Column
+    @Builder.Default
+    private Integer growthTime = 2;
+
+    @Column
+    private Integer profit;
 }

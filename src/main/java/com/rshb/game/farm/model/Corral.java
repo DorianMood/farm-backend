@@ -2,28 +2,27 @@ package com.rshb.game.farm.model;
 
 import com.rshb.game.farm.model.animal.Animal;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 @Entity
-@Data
 @Table(name = "corrals")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class Corral {
     @Id
     @GeneratedValue
     private UUID id;
 
     @ManyToOne
-    private User userId;
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Animal animalId;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "animal_id")
+    private Animal animal;
 
 }

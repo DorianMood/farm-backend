@@ -3,5 +3,5 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <include file="changelog/1.0.0-db/create_table_cow.xml" author="Kretov Ivan"/>
+    <include file="changelog/1.0.0-db/create_all_table.xml" author="Kretov Ivan"/>
 </databaseChangeLog>

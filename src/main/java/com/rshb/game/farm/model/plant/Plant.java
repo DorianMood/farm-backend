@@ -2,18 +2,17 @@ package com.rshb.game.farm.model.plant;
 
 import com.rshb.game.farm.model.Bed;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Table(name = "plants")
 public class Plant {
     @Id
@@ -23,12 +22,19 @@ public class Plant {
     @Column(nullable = false)
     private String name;
 
-    @OneToOne(mappedBy = "id",cascade = CascadeType.ALL)
-    private Bed bed;
-
     @Column
     private String description;
 
+    @Column
+    private LocalDateTime landingTime;
+
     @Enumerated(EnumType.STRING)
     private PlantKind plantKind;
+
+    @Column
+    @Builder.Default
+    private Integer growthTime = 5;
+
+    @Column
+    private Integer profit;
 }

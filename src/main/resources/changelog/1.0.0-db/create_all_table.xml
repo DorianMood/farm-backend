@@ -1,0 +1,110 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Kretov Ivan">
+        <createTable tableName="users">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="farm_inventory_id" type="UUID"/>
+            <column name="role" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Kretov Ivan">
+        <createTable tableName="farm_inventory">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="int" defaultValue="0"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Kretov Ivan">
+        <createTable tableName="animals">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="corral_id" type="UUID"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="landing_time" type="TIMESTAMP"/>
+            <column name="animal_kind" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="growth_time" type="int"/>
+            <column name="fixed_profit" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="Kretov Ivan">
+        <createTable tableName="plants">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="landing_time" type="TIMESTAMP"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="plant_kind" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="growth_time" type="int"/>
+            <column name="profit" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="Kretov Ivan">
+        <createTable tableName="seeds">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="bed_id" type="UUID"/>
+            <column name="landing_time" type="TIMESTAMP"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="seed_kind" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="growth_time" type="int"/>
+            <column name="profit" type="int"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="Kretov Ivan">
+        <createTable tableName="corrals">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="animal_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="Kretov Ivan">
+        <createTable tableName="beds">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="seed_id" type="UUID"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
