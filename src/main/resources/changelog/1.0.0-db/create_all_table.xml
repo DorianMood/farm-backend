@@ -19,6 +19,9 @@
             <column name="role" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="create_at" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
     <changeSet id="2" author="Kretov Ivan">
@@ -47,7 +50,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="growth_time" type="int"/>
-            <column name="fixed_profit" type="int"/>
         </createTable>
     </changeSet>
     <changeSet id="4" author="Kretov Ivan">
@@ -63,6 +65,7 @@
             <column name="plant_kind" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
+            <column name="farm_inventory_id"/>
             <column name="growth_time" type="int"/>
             <column name="profit" type="int"/>
         </createTable>

@@ -1,6 +1,5 @@
 package com.rshb.game.farm.model;
 
-import com.rshb.game.farm.model.plant.Plant;
 import com.rshb.game.farm.model.seed.Seed;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,7 +19,7 @@ public class Bed {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

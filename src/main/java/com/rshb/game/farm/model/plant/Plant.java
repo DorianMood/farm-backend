@@ -1,6 +1,7 @@
 package com.rshb.game.farm.model.plant;
 
 import com.rshb.game.farm.model.Bed;
+import com.rshb.game.farm.model.FarmInventory;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,10 @@ public class Plant {
 
     @Column
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "farm_inventory_id", nullable = false)
+    private FarmInventory farmInventory;
 
     @Column
     private LocalDateTime landingTime;

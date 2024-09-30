@@ -1,5 +1,7 @@
 package com.rshb.game.farm.model;
 
+import com.rshb.game.farm.model.animal.AnimalProduct;
+import com.rshb.game.farm.model.plant.Plant;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,5 +28,11 @@ public class FarmInventory {
     @Column
     @Builder.Default
     private Integer balance = 100;
+
+    @OneToMany(mappedBy = "farmInventory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Plant> plantList;
+
+    @OneToMany(mappedBy = "farmInventory", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AnimalProduct> animalProductList;
 
 }

@@ -41,7 +41,4 @@ public class Animal {
     @Column
     @Builder.Default
     private Integer growthTime = 10;
-
-    @Column
-    private Integer fixedProfit;
 }

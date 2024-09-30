@@ -24,14 +24,7 @@ import static com.rshb.game.farm.util.URLConstant.V1;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping((API + V1 + "/animal"))
-
 public class AnimalController {
-
-    private final AnimalRepository animalRepository;
-
-    private final UserRepository userRepository;
-
-    private final CorralRepository corralRepository;
 
     @GetMapping
     public String getAnimal() {
