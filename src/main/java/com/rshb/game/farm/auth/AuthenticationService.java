@@ -1,8 +1,5 @@
 package com.rshb.game.farm.auth;
 
-import com.rshb.game.farm.auth.AuthenticationRequest;
-import com.rshb.game.farm.auth.AuthenticationResponse;
-import com.rshb.game.farm.auth.RegisterRequest;
 import com.rshb.game.farm.model.*;
 import com.rshb.game.farm.security.JwtService;
 import com.rshb.game.farm.service.UserRepository;
@@ -12,8 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -32,12 +27,15 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
                 .role(Role.USER)
                 .build();
-        user.setFarmInventory(FarmInventory.builder()
-                .user(user)
-                .balance(100)
-                .build());
-        user.setBedList(Generate.generateBed(10,user));
-        user.setCorralList(Generate.generateCorral(4,user));
+
+
+        Farm farm = new Farm();
+        farm.setBedList(Generate.generateBed(10,farm));
+        farm.setBarnsList(Generate.generateBarns(4,farm));
+        farm.setBalance(500);
+        farm.setUser(user);
+
+        user.setFarm(farm);
 
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);

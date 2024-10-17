@@ -17,17 +17,11 @@ public class BedService {
 
     private final Mapper mapper;
 
-    private final HarvestService harvestService;
     private final BedRepository bedRepository;
 
     public List<BedsResp> getAllBedsByUser(User user) {
-        return mapper.getListBedsRespFromBedList(bedRepository.findByUser(user));
+        return null;
     }
 
 
-    public BedsResp harvestBed(UUID bedId){
-        Bed savedBed = bedRepository.save(harvestService.harvest(bedRepository.findById(bedId).get()));
-        return mapper.getBedsRespFromBed(savedBed);
-
-    }
 }

@@ -1,14 +1,13 @@
 package com.rshb.game.farm.service;
 
-import com.rshb.game.farm.model.Corral;
+import com.rshb.game.farm.model.Barns;
 import com.rshb.game.farm.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.UUID;
 
-public interface CorralRepository extends JpaRepository<Corral, UUID> {
+public interface BarnsRepository extends JpaRepository<Barns, UUID> {
 
 
-    List<Corral> findByUser(User user);
 }

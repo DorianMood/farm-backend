@@ -15,7 +15,7 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="farm_inventory_id" type="UUID"/>
+            <column name="farm_id" type="UUID"/>
             <column name="role" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -25,7 +25,7 @@
         </createTable>
     </changeSet>
     <changeSet id="2" author="Kretov Ivan">
-        <createTable tableName="farm_inventory">
+        <createTable tableName="farm">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -35,79 +35,50 @@
             <column name="balance" type="int" defaultValue="0"/>
         </createTable>
     </changeSet>
+
     <changeSet id="3" author="Kretov Ivan">
-        <createTable tableName="animals">
+        <createTable tableName="inventory_item">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="corral_id" type="UUID"/>
-            <column name="description" type="VARCHAR(255)"/>
             <column name="landing_time" type="TIMESTAMP"/>
-            <column name="animal_kind" type="VARCHAR(255)">
+            <column name="amount" type="int"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="harvest_time" type="int"/>
+            <column name="price" type="int"/>
+            <column name="sell_multiple" type="float"/>
+            <column name="category" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="farm_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="growth_time" type="int"/>
+            <column name="barn_id" type="UUID"/>
+            <column name="bed_id" type="UUID"/>
         </createTable>
     </changeSet>
     <changeSet id="4" author="Kretov Ivan">
-        <createTable tableName="plants">
+        <createTable tableName="barns">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="VARCHAR(255)">
+            <column name="farm_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="landing_time" type="TIMESTAMP"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="plant_kind" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="farm_inventory_id"/>
-            <column name="growth_time" type="int"/>
-            <column name="profit" type="int"/>
+            <column name="inventory_item" type="UUID"/>
         </createTable>
     </changeSet>
     <changeSet id="5" author="Kretov Ivan">
-        <createTable tableName="seeds">
-            <column name="id" type="UUID">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="bed_id" type="UUID"/>
-            <column name="landing_time" type="TIMESTAMP"/>
-            <column name="description" type="VARCHAR(255)"/>
-            <column name="seed_kind" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="growth_time" type="int"/>
-            <column name="profit" type="int"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="6" author="Kretov Ivan">
-        <createTable tableName="corrals">
-            <column name="id" type="UUID">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="user_id" type="UUID">
-                <constraints nullable="false"/>
-            </column>
-            <column name="animal_id" type="UUID"/>
-        </createTable>
-    </changeSet>
-    <changeSet id="7" author="Kretov Ivan">
         <createTable tableName="beds">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user_id" type="UUID">
+            <column name="farm_id" type="UUID">
                 <constraints nullable="false"/>
             </column>
-            <column name="seed_id" type="UUID"/>
+            <column name="inventory_item" type="UUID"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

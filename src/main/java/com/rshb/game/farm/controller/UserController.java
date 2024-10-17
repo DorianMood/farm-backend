@@ -30,7 +30,7 @@ public class UserController {
 
         return user.map(value -> ResponseEntity.ok(UserResp.builder()
                 .id(value.getId())
-                .balance(value.getFarmInventory().getBalance())
+                .balance(value.getFarm().getBalance())
                 .createdAt(value.getCreateAt())
                 .username(value.getUsername())
                 .build())).orElseGet(() -> ResponseEntity.notFound().build());

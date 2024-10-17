@@ -32,7 +32,6 @@ public class BedsController {
 
     @PostMapping("/harvest")
     public ResponseEntity<BedsResp> getAllBeds(@RequestBody BedRequest bedId) {
-        return ResponseEntity.ok(bedService.harvestBed(bedId.getBedId()));
-
+        return null;
     }
 }

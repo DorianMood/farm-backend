@@ -35,14 +35,7 @@ public class User implements UserDetails {
     private String password;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JoinColumn(name = "farm_inventory_id")
-    private FarmInventory farmInventory;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Bed> bedList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Corral> corralList = new ArrayList<>();
+    private Farm farm;
 
     @Column
     @Builder.Default
